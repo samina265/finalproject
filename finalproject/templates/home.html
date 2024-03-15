@@ -12,22 +12,129 @@
     </script>
     {% endif %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+    <style>
+        #form-id {
+            width: 50%; /* or any other percentage or fixed value you prefer */
+            margin: 0 auto; /* top and bottom margins are 0, left and right margins are automatically equal */
+        }
+        #input {
+            margin-right: 20px; /* adjust as needed */
+            margin-left: 20px; /* adjust as needed */
+        }
+        #show-button{
+            margin-top:50px;
+            margin-left: 20%; /* adjust as needed */
+            background-color: #207bd5;  
+            color: white;
+            border: none;
+
+        }
+        #hide-button{
+            margin-top:50px;
+            margin-left: 20%; /* adjust as needed */
+            background-color: #207bd5;  
+            color: white;
+            border: red;
+
+        }
+        .response-text {
+            margin-left: 20%; /* adjust as needed */
+        }
+        @media screen and (min-width: 768px) {
+            #form-id {
+                width: 50%;
+            }
+            #input{
+                width: 50%;
+            }
+        }
+        @keyframes example {
+            0% {letter-spacing: 1px;}
+            50% {letter-spacing: 20px;}
+            100% {letter-spacing: 1px;}
+        }
+        .header {
+            background-color: #207bd5;
+            width: 50%; /* adjust as needed */
+            margin: 0 auto; /* center the div */
+        }
+        h1 {
+            color: white;
+            animation-name: example;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+    </style>
 </head>
 <body>
-    <h1>Gemini LLM Application</h1>
-    <form method="post" id=form-id>
+    <div class="header">
+        <h1>Gemini LLM Application</h1>
+    </div>
+    
+    <form method="post" id="form-id">
         {% csrf_token %}
         <label for="input">Input:</label>
         <input type="text" id="input" name="input">
         <button type="submit">Ask the question</button>
     </form>
     <h2>The Response is:</h2>
-    {% for role, text in res_history %}
+    {% comment %} {% for role, text in res_history %}
         <p>{{ role }}: {{ text }}</p>
+    {% endfor %} {% endcomment %}
+    {% for role, text in res_history %}
+    <p class="response-text">{{ role }}: {{ text }}</p>
     {% endfor %}
+
+    {% comment %} <h2>The Chat History is:</h2>
+    {% for role, text in chat_history %}
+        <p class="response-text">{{ role }}: {{ text }}</p>
+    {% endfor %} {% endcomment %}
+
+    {% comment %} ------ green button ---- {% endcomment %}
+    {% comment %} <button id="toggle-button">Show/Hide Chat History</button>
+
+    <div id="chat-history" style="display: none;">
+        <h2>The Chat History is:</h2>
+        {% for role, text in chat_history %}
+            <p class="response-text">{{ role }}: {{ text }}</p>
+        {% endfor %}
+    </div> {% endcomment %}
+
+    <button id="show-button">Show Chat History</button>
+<button id="hide-button" style="display: none;">Hide Chat History</button>
+
+<div id="chat-history" style="display: none;">
     <h2>The Chat History is:</h2>
     {% for role, text in chat_history %}
-        <p>{{ role }}: {{ text }}</p>
+        <p class="response-text">{{ role }}: {{ text }}</p>
     {% endfor %}
+</div>
+
+
+    {% comment %} <script>
+        document.getElementById('toggle-button').addEventListener('click', function() {
+            var chatHistory = document.getElementById('chat-history');
+            if (chatHistory.style.display === "none") {
+                chatHistory.style.display = "block";
+            } else {
+                chatHistory.style.display = "none";
+            }
+        });
+    </script> {% endcomment %}
+
+
+    <script>
+        document.getElementById('show-button').addEventListener('click', function() {
+            document.getElementById('chat-history').style.display = "block";
+            this.style.display = "none";
+            document.getElementById('hide-button').style.display = "block";
+        });
+    
+        document.getElementById('hide-button').addEventListener('click', function() {
+            document.getElementById('chat-history').style.display = "none";
+            this.style.display = "none";
+            document.getElementById('show-button').style.display = "block";
+        });
+    </script>
 </body>
 </html>
