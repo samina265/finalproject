@@ -12,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 # Configure API key
 os.environ['GOOGLE_APL_KEY'] = "AIzaSyDknfkoy5el036HU7PYy_Esd-VgBXYDVNs"
-GOOGLE_APL_KEY=""
 genai.configure(api_key=os.getenv("GOOGLE_APL_KEY"))
 
 # Initialize Gemini LLM model
