@@ -9,5 +9,6 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('login_or_signup/', views.login_or_signup, name='login_or_signup'),
     path('upload/', upload_image, name='upload_image'),
+    path('main/', views.main, name='main'),
     #path('password-reset/', include('django.contrib.auth.urls')),  # Include Django's built-in password reset URLs
 ]
