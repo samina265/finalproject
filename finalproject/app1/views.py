@@ -32,10 +32,8 @@ import os
 
 def home(request):
     chat_history = request.session.get('chat_history', [])
-    # Ensure each item in chat_history has three elements
     for i, item in enumerate(chat_history):
         if len(item) < 3:
-            # Add a default time if it's missing
             chat_history[i] = (*item, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     res_history = []
@@ -98,8 +96,8 @@ def login_or_signup(request):
             password = request.POST.get('password')
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
-            login(request, user)  # Log in the user after signup
-            return redirect('main')  # Redirect to 'main' instead of 'home'
+            login(request, user) 
+            return redirect('main')  
         elif action == 'login':
             # Handle login logic
             username = request.POST.get('username')
@@ -107,37 +105,13 @@ def login_or_signup(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('main')  # Redirect to 'main' instead of 'home'
+                return redirect('main') 
             else:
                return HttpResponse("Username & Password is incorrect!!!")
 
-    # If the request method is not POST or the action is not valid, render the index.html template
+
     return render(request, 'index.html')
 
-# def login_or_signup(request):
-#     if request.method == 'POST':
-#         action = request.POST.get('action')  # Retrieve the action parameter from POST data
-#         if action == 'signup':
-#             # Handle signup logic
-#             username = request.POST.get('username')
-#             email = request.POST.get('email')
-#             password = request.POST.get('password')
-#             user = User.objects.create_user(username=username, email=email, password=password)
-#             user.save()
-#             return redirect('home') # Log in the user after signup
-#         elif action == 'login':
-#             # Handle login logic
-#             username = request.POST.get('username')
-#             pass1= request.POST.get('password')
-#             user = authenticate(request, username=username, password=pass1)
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('home')
-#             else:
-#                return HttpResponse("Username & Password is incorrect!!!")
-
-#     # If the request method is not POST or the action is not valid, render the index.html template
-#     return render(request, 'index.html')
 
     
     

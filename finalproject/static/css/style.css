@@ -267,11 +267,6 @@ body{
     transform: scale(0.9);
 }
 
-
-
-/* ====== Image Layer ===== */
-
-
 /* ======== Responsive ======== */
 @media(max-width: 892px){
     .form-container{ 

@@ -9,13 +9,18 @@
             padding: 20px;
             font-family: Arial, sans-serif;
         }
+        h1{
+            padding-left: 30%;
+            padding-bottom: 20px;
+            color: #207bd5;
+        }
         form {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            width: 50%; /* Set form width */
-            margin: auto; /* Center form */
+            width: 50%;  
+            margin: auto;  
         }
         img {
             width: 200px;
@@ -27,7 +32,7 @@
             margin-bottom: 20px;
         }
         button {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50; 
             border: none;
             color: white;
             padding: 15px 32px;
@@ -42,10 +47,25 @@
         button:hover {
             background-color: #45a049;
         }
+        img {
+            width: 350px;
+            height: 200px;
+            object-fit: contain;
+        }
+        pre {
+            white-space: pre-wrap; 
+            white-space: -moz-pre-wrap; 
+            white-space: -pre-wrap; 
+            white-space: -o-pre-wrap; 
+            word-wrap: break-word; 
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+    <h1>Welcome to IMAGE to Text</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="custom-file">
@@ -55,17 +75,20 @@
         <button type="submit">Upload</button>
     </form>
     {% if filename %}
+    <div style="padding-top: 10px; padding-right: 20px; padding-bottom: 30px;">
         <p>Uploaded file: {{ filename }}</p>
+    </div>
     {% endif %}
+
     {% if uploaded_file %}
         <img src="{{ uploaded_file }}" alt="Uploaded Image">
     {% endif %}
     
     {% if response %}
-        <div style="background-color: #fff; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
-            <h2>Response:</h2>
-            <p>{{ response }}</p>
-        </div>
+    <div style="background-color: #fff; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+        <h2>Response:</h2>
+        <pre>{{ response }}</pre>
+    </div>
     {% endif %}
     <script>
     $(document).ready(function(){
