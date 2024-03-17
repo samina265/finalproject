@@ -19,18 +19,6 @@ def get_gemini_response(image):
     response = model.generate_content(image)
     return response.text if response else None
 
-# def upload_image(request):
-#     context = {}
-#     if request.method == 'POST':
-#         uploaded_file = request.FILES['document']
-#         fs = FileSystemStorage()
-#         name = fs.save(uploaded_file.name, uploaded_file)
-#         image = Image.open(fs.path(name))
-#         context['uploaded_file'] = fs.url(name)
-#         response = get_gemini_response(image)
-#         context['response'] = response
-#     return render(request, 'upload.html', context)
-
 def upload_image(request):
     context = {}
     if request.method == 'POST':
