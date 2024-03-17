@@ -62,29 +62,7 @@ def home(request):
 
     google_api_key = os.environ.get('GOOGLE_APL_KEY')
     return render(request, 'home.html', {'chat_history': chat_history, 'res_history': res_history, 'google_api_key': google_api_key, 'error_message': error_message})
-# def home(request):
-#     res_history = []
-#     chat_history = []
-#     error_message = ''
-#     try:
-#         if request.method == 'POST':
-#             input_text = request.POST.get('input')
-#             if input_text:
-#                 response = get_gemini_response(input_text)
-#                 chat_history.append(("You", input_text))
-#                 res_history.append(("You", input_text))
-#                 for chunk in response:
-#                     chat_history.append(("Bot", chunk.text))
-#                     res_history.append(("Bot", chunk.text))
-#                 # Write chat history to a text file
-#                 with open('chat_history.txt', 'w') as f:
-#                     for sender, message in chat_history:
-#                         f.write(f"{sender}: {message}\n")
-                 
-#     except Exception as e:
-#         error_message = str(e)
-#     google_api_key = os.environ.get('GOOGLE_APL_KEY')
-#     return render(request, 'home.html', {'chat_history': chat_history, 'res_history': res_history, 'google_api_key': google_api_key, 'error_message': error_message})
+
 
 def login_or_signup(request):
     if request.method == 'POST':
@@ -115,4 +93,3 @@ def login_or_signup(request):
 
     
     
-
