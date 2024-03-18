@@ -6,7 +6,7 @@ from django.http import HttpResponse
 import os
 from django.shortcuts import render
 import google.generativeai as genai
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
@@ -90,6 +90,7 @@ def login_or_signup(request):
 
     return render(request, 'index.html')
 
-
-    
+def LogOutPage(request):
+    logout(request)
+    return redirect('login_or_signup')
     

@@ -67,7 +67,7 @@
         </form>
 
         <!-- Registration Form Container -->
-        <form method="post" id="registerForm" action="{% url 'login_or_signup' %}" style="display: none>
+        <form method="post" id="registerForm" action="{% url 'login_or_signup' %}">
             {% csrf_token %}
             <input type="hidden" name="action" value="signup">
             <div class="register-form">
