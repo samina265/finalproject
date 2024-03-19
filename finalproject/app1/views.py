@@ -61,7 +61,8 @@ def home(request):
         error_message = str(e)
 
     google_api_key = os.environ.get('GOOGLE_APL_KEY')
-    return render(request, 'home.html', {'chat_history': chat_history, 'res_history': res_history, 'google_api_key': google_api_key, 'error_message': error_message})
+    return render(request, 'home.html', {'chat_history': chat_history, 'res_history': res_history, 
+                                         'google_api_key': google_api_key, 'error_message': error_message})
 
 
 def login_or_signup(request):

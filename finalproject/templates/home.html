@@ -104,7 +104,10 @@
 
     <button id="show-button">Show Chat History</button>
     <button id="hide-button" style="display: none;">Hide Chat History</button>
-    <div id="chat-history" style="display: none;">
+div{
+
+}
+    <div class="chat-history" style="display: none;">
         <h2>The Chat History is:</h2>
         {% for role, text, time in chat_history %}
             <p class="response-text {{ role|lower }}">
@@ -115,6 +118,19 @@
             <br>
         {% endfor %}
     </div>
+
+    <div class="chat-history" style="display: none;">
+        <h2>The Chat History is:</h2>
+        {% for role, text, time in chat_history %}
+            <p class="response-text {{ role|lower }}">
+                <span class="time">{{ time }}</span>
+                <span class="role">{{ role }}</span>: 
+                <span class="text">{{ text }}</span>
+            </p>
+            <br>
+        {% endfor %}
+    </div>
+
 
     <script>
         document.getElementById('show-button').addEventListener('click', function() {
